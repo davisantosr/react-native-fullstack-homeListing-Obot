@@ -54,4 +54,23 @@ router.post('/', validate, (req, res) => {
 
 })
 
+router.get('', (req, res) => {
+  House.find()
+    .then(houses => {
+      res.send(houses)
+    })
+    .catch(err => console.log(err))
+})
+
+router.get('/:id', (req, res) => {
+
+  const houseId = req.params.id;
+
+  House.findById(houseId)
+    .then(house => {
+      res.send(house)
+    })
+    .catch(err => console.log(err))
+})
+
 module.exports = router

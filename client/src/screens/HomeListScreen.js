@@ -1,13 +1,20 @@
-import React from 'react';
-import { View, Text, StyleSheet, Touchble } from 'react-native';
-
+import React, { useEffect } from 'react';
+import {useDispatch} from 'react-redux';
+import { View, Text, StyleSheet } from 'react-native';
 import { FloatingAction } from 'react-native-floating-action'
 
 import Card from '../components/Card'
 
-
+import * as houseAction from '../redux/actions/houseActions'
 
 const HomeListScreen = props => {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(houseAction.fetchHouses())
+  }, [dispatch])
+
   return (
     <View style={styles.container}>
       <Card

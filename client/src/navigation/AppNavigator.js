@@ -58,9 +58,9 @@ function AppNavigator() {
                iconName = 'info'
              }
             return <MaterialIcons name={iconName} size={24} />
-          }
-          
+          }          
         })} 
+        
       >
         <Tabs.Screen 
           name='Home'

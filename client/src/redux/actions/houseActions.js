@@ -19,7 +19,7 @@ export const fetchHouses = () => {
 
       dispatch({
         type: FETCH_HOUSES, 
-        payload: 1
+        payload: resultData
       })
     } catch(err) {
       console.log('THIS IS THE ERROR', err)

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import {useDispatch} from 'react-redux';
-import { View, Text, StyleSheet } from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { FloatingAction } from 'react-native-floating-action'
 
 import Card from '../components/Card'
@@ -11,15 +11,31 @@ const HomeListScreen = props => {
 
   const dispatch = useDispatch()
 
+  const {houses} = useSelector(state => state.house)
+
   useEffect(() => {
     dispatch(houseAction.fetchHouses())
   }, [dispatch])
 
   return (
     <View style={styles.container}>
-      <Card
-        navigation={props.navigation}
+      <FlatList 
+        data={houses}
+        keyExtractor={item => item._id}
+        renderItem={({item}) => (
+          <Card
+            navigation={props.navigation}
+            title={item.title}
+            address={item.address}
+            homeType={item.homeType}
+            description={item.description}
+            price={item.price}
+            image={item.image}
+            yearBuild={item.yearBuild}
+          />
+        )}
       />
+      
       <FloatingAction
         position='right'
         animated={false}

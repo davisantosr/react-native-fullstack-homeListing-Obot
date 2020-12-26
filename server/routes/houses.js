@@ -5,10 +5,15 @@ const House = require('../models/House')
 
 const router = express.Router();
 
-router.post('/', [
-  check('title').isLength({min: 3, max: 50})
-  .withMessage('Title should have 3 to 50 characters')
-], (req, res) => {
+const validate = [
+  [
+    check('title').isLength({min: 3, max: 50})
+    .withMessage('Title should have 3 to 50 characters')
+  ]
+
+]
+
+router.post('/', validate, (req, res) => {
 
   const errors = validationResult(req)
 

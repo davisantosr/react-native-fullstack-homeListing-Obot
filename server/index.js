@@ -54,6 +54,20 @@ app.post('/api/listing', (req, res) => {
 
 })
 
+app.put('/api/listing/:id', (req, res) => {
+  const home = homes.find(home => home.id === parseInt(req.params.id));
+
+  if(!home) {
+    return res.status(404).send('The home with the given id was not found')
+  }
+
+  home.type = req.body.type;
+  home.description = req.body.description;
+
+  res.send(home)
+  
+})
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => console.log(`Server is running on port ${port}`))

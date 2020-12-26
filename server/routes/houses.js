@@ -24,7 +24,7 @@ const validate = [
   ]
 
 ]
-
+// /api/houses
 router.post('/', validate, (req, res) => {
 
   const errors = validationResult(req)
@@ -54,6 +54,7 @@ router.post('/', validate, (req, res) => {
 
 })
 
+// /api/houses
 router.get('', (req, res) => {
   House.find()
     .then(houses => {
@@ -62,6 +63,7 @@ router.get('', (req, res) => {
     .catch(err => console.log(err))
 })
 
+// /api/houses/id
 router.get('/:id', (req, res) => {
 
   const houseId = req.params.id;
@@ -71,6 +73,40 @@ router.get('/:id', (req, res) => {
       res.send(house)
     })
     .catch(err => console.log(err))
+})
+
+// /api/houses/id
+router.put('/:id', validate, (req, res) => {
+  const houseId = req.params.id;
+
+  const errors = validationResult(req)
+
+  if(!errors.isEmpty()) {
+    return res.status(422).send({'errors': errors.array()})
+  }
+
+
+  House.findById(houseId)
+    .then(house => {
+      house.title = req.body.title;
+      house.address = req.body.address;
+      house.homeType = req.body.homeType;
+      house.desciption = req.body.desciption;
+      house.price = req.body.price;
+      house.image = req.body.image;
+      house.yearBuild = req.body.yearBuild;
+
+      return house.save()
+    })
+      .then(result => {
+        res.send(result)
+      
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
+
 })
 
 module.exports = router

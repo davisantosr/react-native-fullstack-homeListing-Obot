@@ -1,39 +1,48 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
+import {useSelector} from 'react-redux'
 
 
-const HomeDetailScreen = () => {
+const HomeDetailScreen = props => {
+
+  const {houseId} = props.route.params;
+
+  const house = useSelector(state => state.house.houses.find(house =>  house._id == houseId))
+
+  console.log(house)
   return (
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.heading}>
-          <Text style={styles.title}>Modern House</Text>
+          <Text style={styles.title}>{house.title}</Text>
         </View>
         <View>
           <Image
             style={styles.image}
-            source={require('../../assets/images/house.jpg')}
+            source={{uri: house.image}}
           />
         </View>
         <View style={styles.group}>
           <Text style={styles.label}>Home Type:</Text>
-          <Text style={styles.value}>Flat</Text>
+          <Text style={styles.value}>{house.homeType}</Text>
         </View>
         <View style={styles.group}>
           <Text style={styles.label}>Price:</Text>
-          <Text style={styles.value}>$2.000.000,00</Text>
+          <Text style={styles.value}>${house.price}</Text>
         </View>
         <View style={styles.group}>
           <Text style={styles.label}>Year Build:</Text>
-          <Text style={styles.value}>2020</Text>
+          <Text style={styles.value}>{house.yearBuild}</Text>
         </View>
         <View style={styles.group}>
           <Text style={styles.label}>Address:</Text>
-          <Text style={styles.value}>This is some address</Text>
+          <Text style={styles.value}>{house.address}</Text>
         </View>
         <View style={styles.group}>
           <Text style={styles.label}>Decription:</Text>
-          <Text style={styles.value}>This is some description</Text>
+          <Text style={styles.value}>
+            {house.description > 100 ? house.description.slice(0, 100) + '...' : house.description}
+          </Text>
         </View>
 
       </View>

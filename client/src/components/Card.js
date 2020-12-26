@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react
 const Card = props => {
   return (
     <TouchableOpacity
-      onPress={() => props.navigation.navigate('HomeDetail')}
+      onPress={() => props.navigation.navigate('HomeDetail', {houseId: props.id})}
     >
       <View style={styles.card}>
         <View style={styles.titleContainer}>

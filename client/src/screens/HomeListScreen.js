@@ -32,6 +32,7 @@ const HomeListScreen = props => {
             price={item.price}
             image={item.image}
             yearBuild={item.yearBuild}
+            id={item._id}
           />
         )}
       />

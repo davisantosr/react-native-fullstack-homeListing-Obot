@@ -109,4 +109,15 @@ router.put('/:id', validate, (req, res) => {
 
 })
 
+// /api/houses/id
+router.delete('/:id', (req, res) => {
+  const houseId = req.params.id;
+
+  House.findByIdAndRemove(houseId)
+    .then(result => {
+      res.send(result)
+    })
+    .catch(err => console.log(err))
+})
+  
 module.exports = router

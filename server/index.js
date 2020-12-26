@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config()
 
 const app = express();
 
@@ -10,4 +11,6 @@ app.get('/api/listing', (req, res) => {
   res.send([{id: 1, roomType: 'Gold'}, {id:2, roomType: 'Flat'}])
 })
 
-app.listen(3000, () => console.log('Server on port 3000'))
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => console.log(`Server is running on port ${port}`))

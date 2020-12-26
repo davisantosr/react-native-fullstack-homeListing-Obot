@@ -1,12 +1,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-require('dotenv').config()
+const houses = require('./routes/houses')
 
+require('dotenv').config()
 
 const app = express();
 
 app.use(express.json())
+
+app.get('/', (req, res) => {
+  res.send('Welcome to the house listing API')
+})
+
+app.use('/api/houses', houses);
 
 const port = process.env.PORT || 3000;
 

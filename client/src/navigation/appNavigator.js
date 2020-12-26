@@ -32,7 +32,7 @@ function stackNavigator () {
   )
 }
 
-function tabsNavigator () {
+function appNavigator () {
   <NavigationContainer>
     <Tabs.Navigator>
       <Tabs.Screen 
@@ -45,3 +45,5 @@ function tabsNavigator () {
     </Tabs.Navigator>
   </NavigationContainer>
 }
+
+export default appNavigator;

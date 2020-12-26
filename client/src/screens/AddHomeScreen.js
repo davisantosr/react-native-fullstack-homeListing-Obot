@@ -69,6 +69,7 @@ const AddHomeScreen = () => {
                   <Text style={styles.label}>Price</Text>
                   <TextInput 
                     style={styles.input} 
+                    keyboardType='numeric'
                     onChangeText={props.handleChange('price')}
                     value={props.values.price}  
                   />
@@ -77,6 +78,7 @@ const AddHomeScreen = () => {
                   <Text style={styles.label}>Year Build</Text>
                   <TextInput 
                     style={styles.input} 
+                    keyboardType='numeric'
                     onChangeText={props.handleChange('yearBuild')}
                     value={props.values.yearBuild}  
                   />
@@ -101,7 +103,8 @@ const AddHomeScreen = () => {
                 </View>
                 <View style={styles.buttonContainer}>
                   <Button
-                    title='Add Home'  
+                    title='Add Home'
+                    onPress={props.handleSubmit}  
                   />
                 </View>
               </View>

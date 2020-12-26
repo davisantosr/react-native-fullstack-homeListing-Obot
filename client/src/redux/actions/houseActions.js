@@ -26,3 +26,33 @@ export const fetchHouses = () => {
     }
   }
 }
+
+export const createHome = ({title, image, homeType, price, yearBuild, address, description}) => {
+  return async dispatch => {
+
+    const response = await fetch(`http://${IP_NUMBER}:5000/api/houses/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: title, 
+        address: address, 
+        image: image, 
+        homeType: homeType, 
+        price: price, 
+        yearBuild: yearBuild,
+        description: description
+      })
+    })
+
+    const responseData = await response.json();
+    console.log(responseData)
+
+    dispatch({
+      type: CREATE_HOUSES, 
+      payload: responseData
+    })
+
+  }
+}

@@ -8,8 +8,19 @@ import { View,
   KeyboardAvoidingView 
 } from 'react-native';
 
-import { Formik } from 'formik'
+import { Formik } from 'formik';
+import * as yup from 'yup';
 
+
+const formSchema = yup.object({
+  title: yup.string().required().min(3).max(50),
+  price: yup.number().required(), 
+  image: yup.string().required(),
+  address: yup.string().required(),
+  description: yup.string().required(),
+  yearBuild: yup.number().required(),
+
+});
 
 const AddHomeScreen = () => {
   
@@ -33,6 +44,7 @@ const AddHomeScreen = () => {
             address: '', 
             description: '',
           }}
+          validationSchema={formSchema}
           onSubmit={(values) => {
             console.log(values)
           }}
@@ -45,8 +57,10 @@ const AddHomeScreen = () => {
                   <TextInput 
                     style={styles.input} 
                     onChangeText={props.handleChange('title')}
+                    onBlur={props.handleBlur('title')}
                     value={props.values.title}
                   />
+                  <Text style={styles.error}>{props.touched.title && props.errors.title}</Text>
                 </View>
                 <View style={styles.formGroup}>
                   <Text style={styles.label}>ImageUrl</Text>
@@ -55,7 +69,8 @@ const AddHomeScreen = () => {
                     onChangeText={props.handleChange('image')}
                     value={props.values.image}
                   />
-                    
+                  <Text>{props.errors.image}</Text>
+                                      
                 </View>
                 <View style={styles.formGroup}>
                   <Text style={styles.label}>Type</Text>
@@ -64,6 +79,8 @@ const AddHomeScreen = () => {
                     onChangeText={props.handleChange('homeType')}
                     value={props.values.homeType}
                     />
+                  <Text>{props.errors.homeType}</Text>
+
                 </View>
                 <View style={styles.formGroup}>
                   <Text style={styles.label}>Price</Text>
@@ -73,6 +90,8 @@ const AddHomeScreen = () => {
                     onChangeText={props.handleChange('price')}
                     value={props.values.price}  
                   />
+                  <Text>{props.errors.price}</Text>
+
                 </View>
                 <View style={styles.formGroup}>
                   <Text style={styles.label}>Year Build</Text>
@@ -82,6 +101,8 @@ const AddHomeScreen = () => {
                     onChangeText={props.handleChange('yearBuild')}
                     value={props.values.yearBuild}  
                   />
+                  <Text>{props.errors.yearBuild}</Text>
+
                 </View>
                 <View style={styles.formGroup}>
                   <Text style={styles.label}>Address</Text>
@@ -91,6 +112,8 @@ const AddHomeScreen = () => {
                     value={props.values.address}
                     multiline
                   />
+                  <Text>{props.errors.address}</Text>
+
                 </View>
                 <View style={styles.formGroup}>
                   <Text style={styles.label}>Description</Text>
@@ -100,6 +123,8 @@ const AddHomeScreen = () => {
                     value={props.values.description}
                     multiline
                   />
+                  <Text>{props.errors.description}</Text>
+
                 </View>
                 <View style={styles.buttonContainer}>
                   <Button
@@ -111,7 +136,6 @@ const AddHomeScreen = () => {
             )
           }
         </Formik>
-        
       </ScrollView>
     </KeyboardAvoidingView>
   )
@@ -138,6 +162,9 @@ const styles = StyleSheet.create({
   }, 
   buttonContainer: {
     marginTop: 20
+  },
+  error: {
+    color: 'red'
   }
 });
 

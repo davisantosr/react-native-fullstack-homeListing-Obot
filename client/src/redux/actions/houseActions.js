@@ -3,13 +3,15 @@ FETCH_HOUSES,
 CREATE_HOUSES
 } from './types'
 
+import {IP_NUMBER} from "@env"
+
 import axios from 'axios'
 
 export const fetchHouses = () => {
   return async dispatch => {
 
     try {
-      const result = await fetch('http://localhost:5000/api/houses/');
+      const result = await fetch(`http://${IP_NUMBER}:5000/api/houses/`);
 
       const resultData = await result.json()
 

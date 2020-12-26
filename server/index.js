@@ -3,12 +3,35 @@ require('dotenv').config()
 
 const app = express();
 
+const homes = [
+  {
+    id:1, 
+    type:'apartment', 
+    description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam minima amet rem?'
+  },
+  {
+    id:2, 
+    type:'flat', 
+    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam soluta enim totam ut dolor magnam?'
+  } 
+
+]
+
 app.get('/', (req, res) => {
   res.send('Welcome')
 })
 
 app.get('/api/listing', (req, res) => {
-  res.send([{id: 1, roomType: 'Gold'}, {id:2, roomType: 'Flat'}])
+  res.send(homes)
+})
+
+app.get('/api/listing/:id', (req, res) => {
+  const home = homes.find(home => home.id ===  parseInt(req.params.id))
+  
+  if(!home) {
+    res.status(404).send('The home with the given id was not found')
+  }
+  res.send(home);
 })
 
 const port = process.env.PORT || 3000;

@@ -31,3 +31,17 @@ function stackNavigator () {
     </Stack.Navigator>
   )
 }
+
+function tabsNavigator () {
+  <NavigationContainer>
+    <Tabs.Navigator>
+      <Tabs.Screen 
+        name='Home'
+        component={stackNavigator}
+      />
+      <Tabs.Screen
+        name='About' 
+      />
+    </Tabs.Navigator>
+  </NavigationContainer>
+}

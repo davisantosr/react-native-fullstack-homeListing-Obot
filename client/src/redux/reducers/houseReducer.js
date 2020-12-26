@@ -13,10 +13,12 @@ export default function(state=initialState, action) {
         ...state,
         houses: action.payload
       }
-  
-    default:
-      break;
-  }
+    case CREATE_HOUSES:
+      return {
+        ...state,
+        houses: state.houses.concat(action.payload)
+      }
 
-  return state
+      default: return state
+  }
 }

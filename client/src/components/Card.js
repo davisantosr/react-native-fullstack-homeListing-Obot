@@ -8,7 +8,7 @@ const Card = () => {
         <Text style={styles.title}>Modern House</Text>
       </View>
       <View style={styles.imageContainer}>
-        <ImageBackground style={styles.image}>
+        <ImageBackground source={require('../../assets/images/house.jpg')} style={styles.image}>
           <Text style={styles.price}>$2.000.000,00</Text>
           <View style={styles.year}>
             <Text style={styles.yearText}>2020</Text>

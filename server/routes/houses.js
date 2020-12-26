@@ -8,7 +8,19 @@ const router = express.Router();
 const validate = [
   [
     check('title').isLength({min: 3, max: 50})
-    .withMessage('Title should have 3 to 50 characters')
+    .withMessage('Title should have 3 to 50 characters'),
+
+    check('description').isLength({min: 10, max: 200})
+    .withMessage('Title should have 10 to 200 characters'),
+
+    check('address').isLength({min: 10, max: 100})
+    .withMessage('Title should have 10 to 100 characters'),
+
+    check('homeType').isLength({min: 10, max: 100})
+    .withMessage('Title should have 10 to 100 characters'),
+
+    check('price').isNumeric()
+    .withMessage('The price should be a number'),
   ]
 
 ]

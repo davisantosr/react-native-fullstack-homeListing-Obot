@@ -8,6 +8,6 @@ const HouseSchema = new mongoose.Schema({
   price: {type: Number, required: true},
   image: String, 
   yearBuild: Number
-
-
 })
+
+module.exports = mongoose.model('House', HouseSchema);

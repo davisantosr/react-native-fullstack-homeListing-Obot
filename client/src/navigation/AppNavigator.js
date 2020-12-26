@@ -12,7 +12,7 @@ import HomeListScreen from '../screens/HomeListScreen';
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 
-function stackNavigator () {
+function stackNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -32,18 +32,32 @@ function stackNavigator () {
   )
 }
 
-function appNavigator () {
-  <NavigationContainer>
-    <Tabs.Navigator>
-      <Tabs.Screen 
-        name='Home'
-        component={stackNavigator}
+function AboutStackNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name='About'
+        component={AboutScreen}
       />
-      <Tabs.Screen
-        name='About' 
-      />
-    </Tabs.Navigator>
-  </NavigationContainer>
+    </Stack.Navigator>
+  )
 }
 
-export default appNavigator;
+function AppNavigator() {
+  return (
+    <NavigationContainer>
+      <Tabs.Navigator>
+        <Tabs.Screen 
+          name='Home'
+          component={stackNavigator}
+        />
+        <Tabs.Screen
+          name='About'
+          component={AboutStackNavigator}
+        />
+      </Tabs.Navigator>
+    </NavigationContainer>
+  )
+}
+
+export default AppNavigator;

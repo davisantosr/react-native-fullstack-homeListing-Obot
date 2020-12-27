@@ -5,11 +5,15 @@ import { View,
   ScrollView, 
   TextInput, 
   Button,
-  KeyboardAvoidingView 
+  KeyboardAvoidingView, 
+  Alert
 } from 'react-native';
+import { useDispatch } from 'react-redux'
 
 import { Formik } from 'formik';
 import * as yup from 'yup';
+
+import * as houseAction from '../redux/actions/houseActions'
 
 
 const formSchema = yup.object({
@@ -23,9 +27,8 @@ const formSchema = yup.object({
 });
 
 const AddHomeScreen = () => {
-  
-  const [title, setTitle ] = useState('')
 
+  const dispatch = useDispatch()
   return (
     <KeyboardAvoidingView
       behavior='padding'
@@ -47,6 +50,13 @@ const AddHomeScreen = () => {
           validationSchema={formSchema}
           onSubmit={(values) => {
             console.log(values)
+            dispatch(houseAction.createHome(values))
+              .then(() => {
+                Alert('Created successfully')
+              })
+              .catch(err => {
+                Alert('An error occurred. Try Again', [{text: 'OK'}])
+              })
           }}
         >
           {

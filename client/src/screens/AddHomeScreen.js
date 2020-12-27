@@ -6,7 +6,8 @@ import { View,
   TextInput, 
   Button,
   KeyboardAvoidingView, 
-  Alert
+  Alert,
+  ActivityIndicator
 } from 'react-native';
 import { useDispatch } from 'react-redux'
 
@@ -27,6 +28,17 @@ const formSchema = yup.object({
 });
 
 const AddHomeScreen = () => {
+
+  const [isLoading, setIsLoading] = useState(false)
+
+  if(isLoading) {
+    return (
+      <View style={styles.centered}>
+        <ActivityIndicator size='large' />
+      </View>
+    )
+
+  }
 
   const dispatch = useDispatch()
   return (
@@ -175,6 +187,11 @@ const styles = StyleSheet.create({
   },
   error: {
     color: 'red'
+  }, 
+  centered: {
+    flex: 1,
+    justifyContent: 'center', 
+    alignItems: 'center'
   }
 });
 

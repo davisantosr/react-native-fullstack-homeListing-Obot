@@ -61,13 +61,18 @@ const AddHomeScreen = () => {
           }}
           validationSchema={formSchema}
           onSubmit={(values) => {
-            console.log(values)
+
+            setIsLoading(true)
+
             dispatch(houseAction.createHome(values))
               .then(() => {
-                Alert('Created successfully')
+                setIsLoading(false)
+                Alert.alert('Created successfully')
+
               })
               .catch(err => {
-                Alert('An error occurred. Try Again', [{text: 'OK'}])
+                setIsLoading(false)
+                Alert.alert('An error occurred. Try Again', [{text: 'OK'}])
               })
           }}
         >
